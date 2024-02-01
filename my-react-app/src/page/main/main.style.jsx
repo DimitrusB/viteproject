@@ -157,3 +157,9 @@ export const divWeather = styled.div`
   display: flex;
   justify-content: center;
 `;
+
+export const cityBox = styled.div`
+  border: 4px solid;
+  border-radius: 10px;
+  width: 200px;
+`;
