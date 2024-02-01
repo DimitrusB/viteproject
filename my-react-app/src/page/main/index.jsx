@@ -5,15 +5,16 @@ export const MainPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [weatherData, setWeatherData] = useState();
   const [calendarDate, setCalendarDate] = useState();
+  const [iconWeather, setIconWeather] = useState();
 
   const handleSearch = (event) => {
     setSearchQuery(event.target.value);
   };
   useEffect(() => {
     let city = "Санкт-Петербург";
-    let apiKey = "2fa6ce00ccea959715cea1bcdcd73110";
+    let apiKey = "9be8e0b312d81d3bf00a9c3f9c2ef4b9";
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&lang=ru&units=metric`;
-    let url5 = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&lang=ru&units=metric&cnt=5`;
+    let url5 = `http://api.openweathermap.org/data/2.5/forecast/daily?q=${city}&cnt=5&appid=${apiKey}`;
 
     fetch(url)
       .then((response) => response.json())
@@ -21,20 +22,27 @@ export const MainPage = () => {
         console.log(data);
         setWeatherData([data]);
         setCalendarDate(data.dt);
+        let iconCode = data.weather[0].icon;
+        let iconUrl = "http://openweathermap.org/img/w/" + iconCode + ".png";
+        setIconWeather(iconUrl);
       })
       .catch((err) => console.error("Error: ", err));
   }, []);
 
   console.log(weatherData);
 
-
-    let unixTimestamp = calendarDate ;
-    let date = new Date(unixTimestamp * 1000);
-    let day = date.getDate();
-    let month = date.getMonth()+1;
-    let year = date.getFullYear();
-    let today = ((day<10 ? "0" + day : day) + "." + (month<10 ? "0" + month : month) + "." + year)
-    console.log(today);
+  let unixTimestamp = calendarDate;
+  let date = new Date(unixTimestamp * 1000);
+  let day = date.getDate();
+  let month = date.getMonth() + 1;
+  let year = date.getFullYear();
+  let today =
+    (day < 10 ? "0" + day : day) +
+    "." +
+    (month < 10 ? "0" + month : month) +
+    "." +
+    year;
+  console.log(today);
 
   return (
     <S.Wrapper>
@@ -55,10 +63,15 @@ export const MainPage = () => {
           <>
             <p>Ветер:</p>
             <p>Скорость: {weather.wind.speed} м/с</p>
-            <p>Порывы: {weather.wind.gust} м/с</p>
+            <p>
+              Порывы: {weather.wind.gust ? `${weather.wind.gust} м/с` : ""}{" "}
+            </p>
             {Array.isArray(weather.weather) &&
               weather.weather.map((sun, index) => (
-                <p key={index}>{sun.description}</p>
+                <S.divWeather key={index}>
+                  <p>{sun.description}</p>
+                  <img src={iconWeather} alt="Weather icon" />
+                </S.divWeather>
               ))}
           </>
         ))}

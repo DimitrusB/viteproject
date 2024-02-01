@@ -15,7 +15,6 @@ export const Wrapper = styled.div`
 `;
 
 export const Search__form = styled.form`
-
   max-width: 1044px;
   width: 100%;
   display: -webkit-box;
@@ -152,4 +151,9 @@ export const Search__btn = styled.button`
   @media screen and (max-width: 590px) {
     display: none;
   }
+`;
+
+export const divWeather = styled.div`
+  display: flex;
+  justify-content: center;
 `;
