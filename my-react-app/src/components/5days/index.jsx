@@ -45,7 +45,7 @@ export const WeatherFor5Days = ({ city }) => {
               }
             >
               <p>{weather.dt_txt}</p>
-              <div>
+              <div style={{ display: "flex", justifyContent: "center" }}>
                 <img
                   style={{ width: "webkit-fill-available" }}
                   src={`http://openweathermap.org/img/w/${weather.weather[0].icon}.png`}
