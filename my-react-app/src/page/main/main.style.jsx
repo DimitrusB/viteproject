@@ -23,7 +23,6 @@ export const Wrapper = styled.div`
     font-size: 20px;
     font-style: normal;
     font-weight: 600;
-    line-height: normal;
   }
 `;
 
@@ -152,12 +151,11 @@ export const Search__btn = styled.button`
   margin-left: 10px;
   width: 125px;
   height: 34px;
-  background-color: #009ee4;
-  border: 1px solid #009ee4;
-  border-radius: 20px;
+  background: #d9d9d9;
+  border-radius: 30px;
   font-size: 16px;
   line-height: 24px;
-  color: #ffffff;
+  color: #000000;
 
   &:hover {
     background-color: #0080c1;
@@ -170,13 +168,15 @@ export const Search__btn = styled.button`
 export const divWeather = styled.div`
   display: flex;
   justify-content: center;
+  flex-direction: column;
 `;
 
 export const cityBox = styled.div`
   border-radius: 30px;
   background: #d9d9d9;
-  width: 200px;
-  height: max-content;
+  width: 300px;
+  height: 100px;
+  box-shadow: 9px 9px 10px rgb(95 97 135 / 50%);
 `;
 
 export const customTemp = styled.div`
@@ -186,20 +186,38 @@ export const customTemp = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-around;
+  box-shadow: 9px 9px 10px rgb(95 97 135 / 50%);
 `;
 export const weatherToday = styled.div`
+  gap: 120px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   margin-top: 20px;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  
 `;
 
 export const windandOther = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    "header header"
+    "main main";
   justify-items: center;
   align-items: center;
+`;
+
+export const Header = styled.header`
+  grid-area: header;
+`;
+
+export const Main = styled.main`
+  grid-area: main;
 `;
 
 export const errorStatus = styled.p`
@@ -223,4 +241,18 @@ export const pTempMain = styled.span`
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+`;
+
+export const fiveDaysDiv = styled.div`
+border-radius: 30px;
+    background: #d9d9d9;
+    width: 300px;
+    height: max-content;
+    box-shadow: 9px 9px 10px rgb(95 97 135 / 50%);
+}`;
+
+export const firstWind = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 `;

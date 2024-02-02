@@ -5,8 +5,9 @@ import sunset from "../../assets/sunset-white 1.svg";
 import pressure from "../../assets/pressure-white 1.svg";
 import windSpeed from "../../assets/wind 1.svg";
 import humidity from "../../assets/humidity 1.svg";
-import { fetchWeather } from "../../api";
+import { fetchWeather, fetchWeatherFiveDays } from "../../api";
 import { SunriseFunc, SunsetFunc } from "../../assets/func";
+import { WeatherFor5Days } from "../../components/5days";
 
 export const MainPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -50,9 +51,9 @@ export const MainPage = () => {
           setErrorCity("Город не найден в базе");
         }
       });
+
   }, [city]);
 
-  
 
   const degToCompass = (windDeg) => {
     const val = Math.floor(windDeg / 22.5 + 0.5);
@@ -117,10 +118,14 @@ export const MainPage = () => {
         weatherData.map((weather, index) => (
           <>
             <S.weatherToday>
+              <S.firstWind>
               <S.cityBox>
                 <h1>{weather.name}</h1>
                 <p>Прогноз погоды на {today}</p>
+                
               </S.cityBox>
+              <WeatherFor5Days city={city} />
+              </S.firstWind>
               <S.customTemp>
                 <div>
                   <S.pTempMain>
@@ -129,10 +134,10 @@ export const MainPage = () => {
                   <p>
                     Ощущается как: {weather.main.feels_like.toFixed(1)} &#8451;
                   </p>
-                  <img src={sunrise} alt="sunrise" />
-                  <p>Восход {sunriseTime}</p>
-                  <img src={sunset} alt="sunset" />
-                  <p>Закат {sunsetTime}</p>
+                  <img src={sunrise} alt="sunrise" title="восход"/>
+                  <p>{sunriseTime}</p>
+                  <img src={sunset} alt="sunset" title="закат"/>
+                  <p>{sunsetTime}</p>
                 </div>
                 <div>
                   {Array.isArray(weather.weather) &&
@@ -142,6 +147,7 @@ export const MainPage = () => {
                           style={{ width: "webkit-fill-available" }}
                           src={iconWeather}
                           alt="Weather icon"
+                          title={sun.description}
                         />
 
                         <p>
@@ -152,25 +158,27 @@ export const MainPage = () => {
                     ))}
                 </div>
                 <S.windandOther>
+                  <S.Header>
                   <div>
-                    <img src={pressure} alt="pressure" />
+                    <img src={pressure} alt="pressure" title="давление"/>
                     <p>
                       {weather.main.grnd_level || weather.main.pressure} рт.ст.
                     </p>
                   </div>
                   <div>
-                    <img src={humidity} alt="humidity" />
+                    <img src={humidity} alt="humidity" title="влажность"/>
                     <p>{weather.main.humidity} %</p>
                   </div>
-                  <div>
-                    <img src={windSpeed} alt="windSpeed" />
+                  </S.Header>
+                  <S.Main>
+                    <img src={windSpeed} alt="windSpeed" title="сорость ветра"/>
                     <p>{weather.wind.speed} м/с</p>
                     <p>
                       Порывы:{" "}
                       {weather.wind.gust ? `${weather.wind.gust} м/с` : ""}{" "}
                     </p>
-                    <p>Напрвление: {windDegCompass}</p>
-                  </div>
+                    <p style={{lineheight: 'normal'}}>Напрвление: {windDegCompass}</p>
+                  </S.Main>
                 </S.windandOther>
               </S.customTemp>
             </S.weatherToday>
