@@ -220,7 +220,7 @@ export const Main = styled.main`
   grid-area: main;
 `;
 
-export const errorStatus = styled.p`
+export const errorStatus = styled.span`
   color: red;
   font-size: smaller;
   align-self: start;

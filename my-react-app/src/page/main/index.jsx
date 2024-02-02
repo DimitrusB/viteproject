@@ -100,7 +100,7 @@ export const MainPage = () => {
   }
   return (
     <S.Wrapper>
-      <h1>Погода по городам</h1>
+      <h1>Прогноз погоды</h1>
       <S.Search__form>
         <S.Search__text
           type="search"

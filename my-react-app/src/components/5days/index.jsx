@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { fetchWeatherFiveDays } from "../../api";
-import * as S from "../../page/main/main.style"
+import * as S from "../../page/main/main.style";
 
 export const WeatherFor5Days = ({ city }) => {
   const [weatherData, setWeatherData] = useState([]);
@@ -31,25 +31,32 @@ export const WeatherFor5Days = ({ city }) => {
 
   return (
     <>
-    <S.fiveDaysDiv>
-      <p>Прогноз на 5 дней</p>
-      {Array.isArray(weatherData) &&
-        weatherData &&
-        weatherData.map((weather, index) => (
-          <div key={index}>
-            <p>{weather.dt_txt}</p>
-            <div style={{display: 'flex', justifyContent: 'center'}}>
-              <img 
-                style={{ width: "webkit-fill-available" }}
-                src={`http://openweathermap.org/img/w/${weather.weather[0].icon}.png`}
-                alt="Weather icon"
-                title={weather.weather[0].description}
-              />
-              <p>{weather.main.temp.toFixed(1)} &#8451;</p>
+      <S.fiveDaysDiv>
+        <p>Прогноз на 5 дней</p>
+        {Array.isArray(weatherData) &&
+          weatherData &&
+          weatherData.map((weather, index) => (
+            <div
+              key={index}
+              style={
+                index !== weatherData.length - 1
+                  ? { borderBottom: "1px solid", color: "antiquewhite" }
+                  : {}
+              }
+            >
+              <p>{weather.dt_txt}</p>
+              <div>
+                <img
+                  style={{ width: "webkit-fill-available" }}
+                  src={`http://openweathermap.org/img/w/${weather.weather[0].icon}.png`}
+                  alt="Weather icon"
+                  title={weather.weather[0].description}
+                />
+                <p>{weather.main.temp.toFixed(1)} &#8451;</p>
+              </div>
             </div>
-          </div>
-        ))}
-        </S.fiveDaysDiv>
+          ))}
+      </S.fiveDaysDiv>
     </>
   );
 };

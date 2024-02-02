@@ -7,6 +7,9 @@ export function fetchWeather(city) {
         if (response.status === 404) {
           throw new Error("Город не найден в базе");
         }
+        if (response.status === 401) {
+          throw new Error("Ошибка авторизации. Проверьте API-key");
+        }
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -21,6 +24,9 @@ export function fetchWeather(city) {
     const response = await fetch(url);
     if (response.status === 404) {
       throw new Error("Город не найден в базе");
+    }
+    if (response.status === 401) {
+      throw new Error("Ошибка авторизации. Проверьте API-key");
     }
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
