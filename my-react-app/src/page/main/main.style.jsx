@@ -2,7 +2,7 @@ import { styled } from "styled-components";
 
 export const Wrapper = styled.div`
   width: 100%;
-
+  min-height: 500px;
   overflow: hidden;
   background-color: #f1f1f1;
   display: -webkit-box;
@@ -12,6 +12,11 @@ export const Wrapper = styled.div`
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
+
+  && h1 {
+    font-size: 2.2em;
+    line-height: 0.8;
+  }
 `;
 
 export const Search__form = styled.form`
@@ -20,6 +25,7 @@ export const Search__form = styled.form`
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  justify-content: center;
 
   @media screen and (max-width: 590px) {
     margin-left: 10px;
@@ -32,12 +38,12 @@ export const Search__form = styled.form`
 `;
 
 export const Search__text = styled.input`
-  width: 100%;
-  height: 50px;
+  width: 58%;
+  height: 32px;
   border-width: 1px;
   border-style: solid;
   border-color: rgba(0, 0, 0, 0.2);
-  border-radius: 6px;
+  border-radius: 20px;
   background-color: transparent;
   padding: 13px 19px;
   font-style: normal;
@@ -136,11 +142,11 @@ export const Search__text = styled.input`
 
 export const Search__btn = styled.button`
   margin-left: 10px;
-  width: 158px;
-  height: 50px;
+  width: 125px;
+  height: 34px;
   background-color: #009ee4;
   border: 1px solid #009ee4;
-  border-radius: 6px;
+  border-radius: 20px;
   font-size: 16px;
   line-height: 24px;
   color: #ffffff;
@@ -162,4 +168,35 @@ export const cityBox = styled.div`
   border: 4px solid;
   border-radius: 10px;
   width: 200px;
+  height: max-content;
+`;
+
+export const customTemp = styled.div`
+  border: 4px solid;
+  border-radius: 20px;
+  width: 720px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
+export const weatherToday = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 20px;
+`;
+
+export const windandOther = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  justify-items: center;
+`;
+
+export const errorStatus = styled.p`
+  color: red;
+  font-size: smaller;
+  align-self: start;
+  margin-left: 135px;
 `;
