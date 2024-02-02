@@ -188,10 +188,11 @@ export const customTemp = styled.div`
   align-items: center;
 `;
 export const weatherToday = styled.div`
+  gap: 120px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   margin-top: 20px;
 `;
 
