@@ -6,6 +6,7 @@ import pressure from "../../assets/pressure-white 1.svg";
 import windSpeed from "../../assets/wind 1.svg";
 import humidity from "../../assets/humidity 1.svg";
 import { fetchWeather } from "../../api";
+import { SunriseFunc, SunsetFunc } from "../../assets/func";
 
 export const MainPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -15,6 +16,10 @@ export const MainPage = () => {
   const [iconWeather, setIconWeather] = useState();
   const [windDegCompass, setWindDegCompass] = useState("");
   const [errorCity, setErrorCity] = useState("");
+  const [sunriseSys, setSunriseSys] = useState("");
+  const [sunsetSys, setSunsetSys] = useState("");
+
+
 
   const handleSearch = (e) => {
     if (e.key === "Enter" || e.type === "click") {
@@ -25,12 +30,14 @@ export const MainPage = () => {
 
   useEffect(() => {
     if (!city) return;
-  
+
     fetchWeather(city)
       .then((data) => {
         console.log(data);
         setWeatherData([data]);
         setCalendarDate(data.dt);
+        setSunriseSys(data.sys.sunrise);
+        setSunsetSys(data.sys.sunset);
         degToCompass(data.wind.deg);
         let iconCode = data.weather[0].icon;
         let iconUrl = "http://openweathermap.org/img/w/" + iconCode + ".png";
@@ -44,6 +51,8 @@ export const MainPage = () => {
         }
       });
   }, [city]);
+
+  
 
   const degToCompass = (windDeg) => {
     const val = Math.floor(windDeg / 22.5 + 0.5);
@@ -68,6 +77,11 @@ export const MainPage = () => {
 
     setWindDegCompass(arr[val % 16]);
   };
+
+
+  let sunsetTime = SunsetFunc({sunsetSys: sunsetSys});
+  let sunriseTime = SunriseFunc({sunriseSys: sunriseSys});
+
 
   let date, day, month, year, today;
   if (calendarDate) {
@@ -109,15 +123,16 @@ export const MainPage = () => {
               </S.cityBox>
               <S.customTemp>
                 <div>
-                  <h1>Температура</h1>
-                  <h1>{weather.main.temp.toFixed(1)} &#8451;</h1>
+                  <S.pTempMain>
+                    {weather.main.temp.toFixed(1)} &#8451;
+                  </S.pTempMain>
                   <p>
                     Ощущается как: {weather.main.feels_like.toFixed(1)} &#8451;
                   </p>
                   <img src={sunrise} alt="sunrise" />
-                  <p>Восход {weather.sys.sunrise}</p>
+                  <p>Восход {sunriseTime}</p>
                   <img src={sunset} alt="sunset" />
-                  <p>Закат {weather.sys.sunset}</p>
+                  <p>Закат {sunsetTime}</p>
                 </div>
                 <div>
                   {Array.isArray(weather.weather) &&
@@ -138,23 +153,23 @@ export const MainPage = () => {
                 </div>
                 <S.windandOther>
                   <div>
-                  <img src={pressure} alt="pressure" />
-                  <p>
-                    {weather.main.grnd_level || weather.main.pressure} рт.ст.
-                  </p>
+                    <img src={pressure} alt="pressure" />
+                    <p>
+                      {weather.main.grnd_level || weather.main.pressure} рт.ст.
+                    </p>
                   </div>
                   <div>
-                  <img src={humidity} alt="humidity" />
-                  <p>{weather.main.humidity} %</p>
+                    <img src={humidity} alt="humidity" />
+                    <p>{weather.main.humidity} %</p>
                   </div>
                   <div>
-                  <img src={windSpeed} alt="windSpeed" />
-                  <p>{weather.wind.speed} м/с</p>
-                  <p>
-                    Порывы:{" "}
-                    {weather.wind.gust ? `${weather.wind.gust} м/с` : ""}{" "}
-                  </p>
-                  <p>Напрвление: {windDegCompass}</p>
+                    <img src={windSpeed} alt="windSpeed" />
+                    <p>{weather.wind.speed} м/с</p>
+                    <p>
+                      Порывы:{" "}
+                      {weather.wind.gust ? `${weather.wind.gust} м/с` : ""}{" "}
+                    </p>
+                    <p>Напрвление: {windDegCompass}</p>
                   </div>
                 </S.windandOther>
               </S.customTemp>

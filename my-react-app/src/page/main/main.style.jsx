@@ -4,7 +4,7 @@ export const Wrapper = styled.div`
   width: 100%;
   min-height: 500px;
   overflow: hidden;
-  background-color: #f1f1f1;
+  background: linear-gradient(153deg, #fff 0.28%, rgb(70 97 115 / 47%) 178.65%);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -12,10 +12,18 @@ export const Wrapper = styled.div`
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
-
+  font-family: Poppins;
   && h1 {
     font-size: 2.2em;
     line-height: 0.8;
+  }
+  && p {
+    color: #292929;
+
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
   }
 `;
 
@@ -165,15 +173,15 @@ export const divWeather = styled.div`
 `;
 
 export const cityBox = styled.div`
-  border: 4px solid;
-  border-radius: 10px;
+  border-radius: 30px;
+  background: #d9d9d9;
   width: 200px;
   height: max-content;
 `;
 
 export const customTemp = styled.div`
-  border: 4px solid;
-  border-radius: 20px;
+  border-radius: 30px;
+  background: #d9d9d9;
   width: 720px;
   display: flex;
   flex-direction: row;
@@ -199,4 +207,20 @@ export const errorStatus = styled.p`
   font-size: smaller;
   align-self: start;
   margin-left: 135px;
+`;
+
+export const pTempMain = styled.span`
+  font-family: Poppins;
+  font-size: 80px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  background: linear-gradient(
+    80deg,
+    #292929 -2.93%,
+    rgba(255, 255, 255, 0) 212.44%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 `;
