@@ -190,8 +190,8 @@ export const weatherToday = styled.div`
 export const windandOther = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
   justify-items: center;
+  align-items: center;
 `;
 
 export const errorStatus = styled.p`

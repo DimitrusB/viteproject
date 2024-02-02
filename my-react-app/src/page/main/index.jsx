@@ -137,13 +137,17 @@ export const MainPage = () => {
                     ))}
                 </div>
                 <S.windandOther>
+                  <div>
                   <img src={pressure} alt="pressure" />
                   <p>
                     {weather.main.grnd_level || weather.main.pressure} рт.ст.
                   </p>
+                  </div>
+                  <div>
                   <img src={humidity} alt="humidity" />
                   <p>{weather.main.humidity} %</p>
-                  <p>Ветер:</p>
+                  </div>
+                  <div>
                   <img src={windSpeed} alt="windSpeed" />
                   <p>{weather.wind.speed} м/с</p>
                   <p>
@@ -151,6 +155,7 @@ export const MainPage = () => {
                     {weather.wind.gust ? `${weather.wind.gust} м/с` : ""}{" "}
                   </p>
                   <p>Напрвление: {windDegCompass}</p>
+                  </div>
                 </S.windandOther>
               </S.customTemp>
             </S.weatherToday>
