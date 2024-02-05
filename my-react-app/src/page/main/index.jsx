@@ -8,6 +8,8 @@ import humidity from "../../assets/humidity 1.svg";
 import { fetchWeather, fetchWeatherFiveDays } from "../../api";
 import { SunriseFunc, SunsetFunc } from "../../assets/func";
 import { WeatherFor5Days } from "../../components/5days";
+import { degToCompass } from "../../assets/compaswind";
+
 
 export const MainPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -39,7 +41,8 @@ export const MainPage = () => {
         setCalendarDate(data.dt);
         setSunriseSys(data.sys.sunrise);
         setSunsetSys(data.sys.sunset);
-        degToCompass(data.wind.deg);
+        let windDirection = degToCompass(data.wind.deg);
+        setWindDegCompass(windDirection);
         let iconCode = data.weather[0].icon;
         let iconUrl = "http://openweathermap.org/img/w/" + iconCode + ".png";
         setIconWeather(iconUrl);
@@ -53,31 +56,6 @@ export const MainPage = () => {
       });
 
   }, [city]);
-
-
-  const degToCompass = (windDeg) => {
-    const val = Math.floor(windDeg / 22.5 + 0.5);
-    const arr = [
-      "Север",
-      "Северо-Северо-Восток",
-      "Северо-Восток",
-      "Востоко-Северо-Восток",
-      "Восток",
-      "Востоко-Юго-Восток",
-      "Юго-Восток",
-      "Юго-Юго-Восток",
-      "Юг",
-      "Юго-Юго-Запад",
-      "Юго-Запад",
-      "Западо-Юго-Запад",
-      "Запад",
-      "Западо-Северо-Запад",
-      "Северо-Запад",
-      "Северо-Северо-Запад",
-    ];
-
-    setWindDegCompass(arr[val % 16]);
-  };
 
 
   let sunsetTime = SunsetFunc({sunsetSys: sunsetSys});
@@ -129,10 +107,10 @@ export const MainPage = () => {
               <S.customTemp>
                 <div>
                   <S.pTempMain>
-                    {weather.main.temp.toFixed(1)} &#8451;
+                    {weather.main.temp.toFixed(1)}&#8451;
                   </S.pTempMain>
-                  <p>
-                    Ощущается как: {weather.main.feels_like.toFixed(1)} &#8451;
+                  <p style={{lineHeight: 'initial'}}>
+                    Ощущается как: {weather.main.feels_like.toFixed(1)}&#8451;
                   </p>
                   <img src={sunrise} alt="sunrise" title="восход"/>
                   <p>{sunriseTime}</p>
@@ -177,7 +155,7 @@ export const MainPage = () => {
                       Порывы:{" "}
                       {weather.wind.gust ? `${weather.wind.gust} м/с` : ""}{" "}
                     </p>
-                    <p style={{lineheight: 'normal'}}>Напрвление: {windDegCompass}</p>
+                    <p style={{lineHeight: 'initial'}}>Напрвление: {windDegCompass}</p>
                   </S.Main>
                 </S.windandOther>
               </S.customTemp>

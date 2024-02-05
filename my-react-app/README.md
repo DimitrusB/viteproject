@@ -1,8 +1,20 @@
 # React + Vite
+Мини-приложение для просмотра прогноза погоды
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+VITE v5.0.12 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+React v 18.2.0
+
+
+Данные о погоде взяты с API OpenWeatherMap
+
+Bспользуемые библиотеки:
+
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.21.3",
+    "styled-components": "^6.1.8"
+    "eslint": "^8.55.0",
+    "eslint-plugin-react": "^7.33.2"
+
+Запуск проекта -  npm run dev
