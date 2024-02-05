@@ -244,6 +244,9 @@ export const errorStatus = styled.span`
   font-size: smaller;
   align-self: start;
   margin-left: 135px;
+  @media screen and (max-width: 1024px) {
+    margin-left: 0;
+    }
 `;
 
 export const pTempMain = styled.span`
