@@ -15,6 +15,11 @@ Bспользуемые библиотеки:
     "react-router-dom": "^6.21.3",
     "styled-components": "^6.1.8"
     "eslint": "^8.55.0",
-    "eslint-plugin-react": "^7.33.2"
+    "eslint-plugin-react": "^7.33.2",
+    "jest": "^29.7.0"
 
 Запуск проекта -  npm run dev
+
+Проверка функции на перевод направления ветра
+
+Запуск теста - npm test 
