@@ -128,7 +128,7 @@ export const MainPage = () => {
                           title={sun.description}
                         />
 
-                        <p>
+                        <p style={{lineHeight: 'initial'}}>
                           {sun.description.charAt(0).toUpperCase() +
                             sun.description.slice(1)}
                         </p>
