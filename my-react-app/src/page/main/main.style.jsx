@@ -34,7 +34,7 @@ export const Search__form = styled.form`
   display: flex;
   justify-content: center;
 
-  @media screen and (max-width: 590px) {
+  @media screen and (max-width: 1024px) {
     margin-left: auto;
     max-width: 1044px;
     width: 100%;
@@ -101,7 +101,7 @@ export const Search__text = styled.input`
     font-size: 16px;
     line-height: 24px;
   }
-  @media screen and (max-width: 590px) {
+  @media screen and (max-width: 1024px) {
     display: inline-block;
     width: 100%;
     height: 32px;
@@ -164,7 +164,7 @@ export const Search__btn = styled.button`
   &:hover {
     background-color: #0080c1;
   }
-  // @media screen and (max-width: 590px) {
+  // @media screen and (max-width: 1024px) {
   //   display: none;
   // }
 `;
@@ -173,7 +173,7 @@ export const divWeather = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  @media screen and (max-width: 590px) {
+  @media screen and (max-width: 1024px) {
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -200,7 +200,7 @@ export const customTemp = styled.div`
   box-shadow: 9px 9px 10px rgb(95 97 135 / 50%);
 
 
-  @media screen and (max-width: 590px) {
+  @media screen and (max-width: 1024px) {
   flex-direction: column;
   width: auto;
   }
@@ -215,7 +215,7 @@ export const weatherToday = styled.div`
   align-items: flex-start;
   margin-bottom: 20px;
   
-  @media screen and (max-width: 590px) {
+  @media screen and (max-width: 1024px) {
     gap: 40px;
     }
 `;
