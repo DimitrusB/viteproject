@@ -185,7 +185,7 @@ export const cityBox = styled.div`
   border-radius: 30px;
   background: #d9d9d9;
   width: 300px;
-  height: 100px;
+  height: auto;
   box-shadow: 9px 9px 10px rgb(95 97 135 / 50%);
 `;
 

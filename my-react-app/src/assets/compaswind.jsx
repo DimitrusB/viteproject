@@ -1,4 +1,4 @@
-export const degToCompass = ( windDeg ) => {
+export const degToCompass = (windDeg) => {
   const val = Math.floor(windDeg / 22.5 + 0.5);
   const arr = [
     "Север",
@@ -20,5 +20,4 @@ export const degToCompass = ( windDeg ) => {
   ];
 
   return arr[val % 16];
-
 };

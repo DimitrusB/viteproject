@@ -11,6 +11,7 @@ import { WeatherFor5Days } from "../../components/5days";
 import { degToCompass } from "../../assets/compaswind";
 
 
+
 export const MainPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [weatherData, setWeatherData] = useState();
