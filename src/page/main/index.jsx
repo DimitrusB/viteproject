@@ -54,6 +54,7 @@ export const MainPage = () => {
         console.error("Error: ", err);
         if (err.message === "Failed to fetch") {
           setErrorCity("Ошибка соединения с интернетом");
+          setWeatherData([]);
         } else if (err.message === "Город не найден в базе") {
           setErrorCity("Город не найден в базе");
           setWeatherData([]);
