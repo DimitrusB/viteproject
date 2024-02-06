@@ -174,10 +174,10 @@ export const divWeather = styled.div`
   justify-content: center;
   flex-direction: column;
   @media screen and (max-width: 1024px) {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
   }
 `;
 
@@ -199,10 +199,9 @@ export const customTemp = styled.div`
   justify-content: space-around;
   box-shadow: 9px 9px 10px rgb(95 97 135 / 50%);
 
-
   @media screen and (max-width: 1024px) {
-  flex-direction: column;
-  width: auto;
+    flex-direction: column;
+    width: auto;
   }
 `;
 export const weatherToday = styled.div`
@@ -214,10 +213,10 @@ export const weatherToday = styled.div`
   margin-top: 20px;
   align-items: flex-start;
   margin-bottom: 20px;
-  
+
   @media screen and (max-width: 1024px) {
     gap: 40px;
-    }
+  }
 `;
 
 export const windandOther = styled.div`
@@ -246,7 +245,7 @@ export const errorStatus = styled.span`
   margin-left: 135px;
   @media screen and (max-width: 1024px) {
     margin-left: 0;
-    }
+  }
 `;
 
 export const pTempMain = styled.span`

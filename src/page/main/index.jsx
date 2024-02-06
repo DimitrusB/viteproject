@@ -6,11 +6,9 @@ import pressure from "../../assets/pressure-white 1.svg";
 import windSpeed from "../../assets/wind 1.svg";
 import humidity from "../../assets/humidity 1.svg";
 import { fetchWeather, fetchWeatherFiveDays } from "../../api";
-import { SunriseFunc, SunsetFunc } from "../../assets/func";
+import { SunriseFunc, SunsetFunc } from "../../components/func";
 import { WeatherFor5Days } from "../../components/5days";
-import { degToCompass } from "../../assets/compaswind";
-
-
+import { degToCompass } from "../../components/compaswind";
 
 export const MainPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -23,12 +21,15 @@ export const MainPage = () => {
   const [sunriseSys, setSunriseSys] = useState("");
   const [sunsetSys, setSunsetSys] = useState("");
 
-
-
   const handleSearch = (e) => {
     if (e.key === "Enter" || e.type === "click") {
       e.preventDefault();
-      setCity(searchQuery);
+      if (searchQuery.trim() !== "") {
+        setCity(searchQuery);
+      } else {
+        setErrorCity("Введите название города");
+        setWeatherData([]);
+      }
     }
   };
 
@@ -51,17 +52,17 @@ export const MainPage = () => {
       })
       .catch((err) => {
         console.error("Error: ", err);
-        if (err.message === "Город не найден в базе") {
+        if (err.message === "Failed to fetch") {
+          setErrorCity("Ошибка соединения с интернетом");
+        } else if (err.message === "Город не найден в базе") {
           setErrorCity("Город не найден в базе");
+          setWeatherData([]);
         }
       });
-
   }, [city]);
 
-
-  let sunsetTime = SunsetFunc({sunsetSys: sunsetSys});
-  let sunriseTime = SunriseFunc({sunriseSys: sunriseSys});
-
+  let sunsetTime = SunsetFunc({ sunsetSys: sunsetSys });
+  let sunriseTime = SunriseFunc({ sunriseSys: sunriseSys });
 
   let date, day, month, year, today;
   if (calendarDate) {
@@ -98,24 +99,23 @@ export const MainPage = () => {
           <>
             <S.weatherToday>
               <S.firstWind>
-              <S.cityBox>
-                <h1>{weather.name}</h1>
-                <p>Прогноз погоды на {today}</p>
-                
-              </S.cityBox>
-              <WeatherFor5Days city={city} />
+                <S.cityBox>
+                  <h1>{weather.name}</h1>
+                  <p>Прогноз погоды на {today}</p>
+                </S.cityBox>
+                <WeatherFor5Days city={city} />
               </S.firstWind>
               <S.customTemp>
                 <div>
                   <S.pTempMain>
                     {weather.main.temp.toFixed(1)}&#8451;
                   </S.pTempMain>
-                  <p style={{lineHeight: 'initial'}}>
+                  <p style={{ lineHeight: "initial" }}>
                     Ощущается как: {weather.main.feels_like.toFixed(1)}&#8451;
                   </p>
-                  <img src={sunrise} alt="sunrise" title="восход"/>
+                  <img src={sunrise} alt="sunrise" title="восход" />
                   <p>{sunriseTime}</p>
-                  <img src={sunset} alt="sunset" title="закат"/>
+                  <img src={sunset} alt="sunset" title="закат" />
                   <p>{sunsetTime}</p>
                 </div>
                 <div>
@@ -129,7 +129,7 @@ export const MainPage = () => {
                           title={sun.description}
                         />
 
-                        <p style={{lineHeight: 'initial'}}>
+                        <p style={{ lineHeight: "initial" }}>
                           {sun.description.charAt(0).toUpperCase() +
                             sun.description.slice(1)}
                         </p>
@@ -138,25 +138,32 @@ export const MainPage = () => {
                 </div>
                 <S.windandOther>
                   <S.Header>
-                  <div>
-                    <img src={pressure} alt="pressure" title="давление"/>
-                    <p>
-                      {weather.main.grnd_level || weather.main.pressure} рт.ст.
-                    </p>
-                  </div>
-                  <div>
-                    <img src={humidity} alt="humidity" title="влажность"/>
-                    <p>{weather.main.humidity} %</p>
-                  </div>
+                    <div>
+                      <img src={pressure} alt="pressure" title="давление" />
+                      <p style={{ lineHeight: "initial" }}>
+                        {weather.main.grnd_level || weather.main.pressure}{" "}
+                        рт.ст.
+                      </p>
+                    </div>
+                    <div>
+                      <img src={humidity} alt="humidity" title="влажность" />
+                      <p>{weather.main.humidity} %</p>
+                    </div>
                   </S.Header>
                   <S.Main>
-                    <img src={windSpeed} alt="windSpeed" title="сорость ветра"/>
+                    <img
+                      src={windSpeed}
+                      alt="windSpeed"
+                      title="сорость ветра"
+                    />
                     <p>{weather.wind.speed} м/с</p>
-                    <p>
+                    <p style={{ lineHeight: "initial" }}>
                       Порывы:{" "}
                       {weather.wind.gust ? `${weather.wind.gust} м/с` : ""}{" "}
                     </p>
-                    <p style={{lineHeight: 'initial'}}>Напрвление: {windDegCompass}</p>
+                    <p style={{ lineHeight: "initial" }}>
+                      Напрвление: {windDegCompass}
+                    </p>
                   </S.Main>
                 </S.windandOther>
               </S.customTemp>

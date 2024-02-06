@@ -1,12 +1,12 @@
-import { AppRoutes } from '../routes';
-import './App.css'
+import { AppRoutes } from "../routes";
+import "./App.css";
 
 function App() {
   return (
     <div className="App">
-<AppRoutes/>
+      <AppRoutes />
     </div>
   );
 }
 
-export default App
+export default App;
