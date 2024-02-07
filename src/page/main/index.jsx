@@ -10,6 +10,7 @@ import { SunriseFunc, SunsetFunc } from "../../components/func";
 import { WeatherFor5Days } from "../../components/5days";
 import { degToCompass } from "../../components/compaswind";
 
+
 export const MainPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [weatherData, setWeatherData] = useState();
@@ -20,6 +21,7 @@ export const MainPage = () => {
   const [errorCity, setErrorCity] = useState("");
   const [sunriseSys, setSunriseSys] = useState("");
   const [sunsetSys, setSunsetSys] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSearch = (e) => {
     if (e.key === "Enter" || e.type === "click") {
@@ -34,8 +36,9 @@ export const MainPage = () => {
   };
 
   useEffect(() => {
-    if (!city) return;
 
+    if (!city) return;
+    setLoading(true);
     fetchWeather(city)
       .then((data) => {
         console.log(data);
@@ -59,7 +62,8 @@ export const MainPage = () => {
           setErrorCity("Город не найден в базе");
           setWeatherData([]);
         }
-      });
+      })
+      .finally(() => setLoading(false));
   }, [city]);
 
   let sunsetTime = SunsetFunc({ sunsetSys: sunsetSys });
@@ -79,6 +83,7 @@ export const MainPage = () => {
       "." +
       year;
   }
+
   return (
     <S.Wrapper>
       <h1>Прогноз погоды</h1>
@@ -94,7 +99,7 @@ export const MainPage = () => {
         <S.Search__btn onClick={handleSearch}>Найти</S.Search__btn>
       </S.Search__form>
       {errorCity ? <S.errorStatus>{errorCity}</S.errorStatus> : ""}
-
+      {loading ? <h2>Загрузка...</h2> : ""}
       {Array.isArray(weatherData) &&
         weatherData[0] &&
         weatherData.map((weather, index) => (

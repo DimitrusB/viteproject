@@ -19,7 +19,6 @@ export const Wrapper = styled.div`
   }
   && p {
     color: #292929;
-
     font-size: 20px;
     font-style: normal;
     font-weight: 600;
@@ -29,8 +28,6 @@ export const Wrapper = styled.div`
 export const Search__form = styled.form`
   max-width: 1044px;
   width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   justify-content: center;
 
