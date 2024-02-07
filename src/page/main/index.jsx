@@ -30,6 +30,7 @@ export const MainPage = () => {
         setCity(searchQuery);
       } else {
         setErrorCity("Введите название города");
+        setSearchQuery("");
         setWeatherData([]);
       }
     }
@@ -94,6 +95,7 @@ export const MainPage = () => {
           name="search"
           onChange={(e) => setSearchQuery(e.target.value)}
           onKeyDown={handleSearch}
+          value={searchQuery}
           style={errorCity ? { borderColor: 'red', backgroundColor: 'lightpink' } : {}}
         />
         <S.Search__btn onClick={handleSearch}>Найти</S.Search__btn>

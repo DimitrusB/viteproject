@@ -235,11 +235,9 @@ export const Main = styled.main`
   grid-area: main;
 `;
 
-export const errorStatus = styled.span`
+export const errorStatus = styled.h2`
   color: red;
-  font-size: smaller;
-  align-self: start;
-  margin-left: 135px;
+  font-size: larger;
   @media screen and (max-width: 1024px) {
     margin-left: 0;
   }
